@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -28,6 +31,7 @@ jobs:
 
       - name: Build site
         run: pnpm build
+        # 此处不再需要单独定义 env，因为顶级的 env 已生效
 
       - name: Deploy to server
         uses: easingthemes/ssh-deploy@main
@@ -38,4 +42,3 @@ jobs:
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
           TARGET: ${{ secrets.SSH_PATH }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
