@@ -1,14 +1,14 @@
 import type { Site, Ui, Features } from './types'
 
 export const SITE: Site = {
-  website: 'https://astro-antfustyle-theme.vercel.app/',
+  website: 'https://sibiwhisper.xyz/',
   base: '/',
-  title: 'Astro AntfuStyle Theme',
+  title: 'Sibiswhisper - 思比的纸条',
   description:
-    'A customizable, feature-rich Astro theme for blog and portfolio creation',
+    '思比的纸条的博客，分享生活记录创造。',
   author: 'Stephanie Lin',
-  lang: 'en',
-  ogLocale: 'en_US',
+  lang: 'zh-Hans',
+  ogLocale: 'zh_CN',
   imageDomains: ['cdn.bsky.app', 'images.unsplash.com'],
 }
 
@@ -26,6 +26,7 @@ export const UI: Ui = {
       displayMode: 'alwaysText',
       text: 'Projects',
     },
+ /*
     {
       path: '/highlights',
       title: 'Highlights',
@@ -33,6 +34,7 @@ export const UI: Ui = {
       text: 'Highlights',
       icon: 'i-ri-screenshot-line',
     },
+    */
     {
       path: '/photos',
       title: 'Photos',
@@ -57,22 +59,22 @@ export const UI: Ui = {
   ],
   socialLinks: [
     {
-      link: 'https://github.com/lin-stephanie/astro-antfustyle-theme',
-      title: 'AntfuStyle on Github',
+      link: 'https://space.bilibili.com/334918841?spm_id_from=333.1007.0.0',
+      title: 'B站',
       displayMode: 'alwaysIcon',
-      icon: 'i-uil-github-alt',
+      icon: 'i-fa6-brands-bilibili',
     },
     {
-      link: 'https://x.com/astrodotbuild',
-      title: 'Astro on Twitter',
+      link: 'https://www.douyin.com/user/MS4wLjABAAAA8k6Ta6_n8JIJ5ulT9Oz1S7GnUosBuSFRiOVDnY0QvkI',
+      title: '抖音',
       displayMode: 'alwaysIcon',
-      icon: 'i-ri-twitter-x-fill',
+      icon: 'i-icon-park-outline-tiktok',
     },
     {
       link: 'https://bsky.app/profile/astro.build',
       title: 'Astro on Bluesky',
       displayMode: 'alwaysIcon',
-      icon: 'i-meteor-icons-bluesky',
+      icon: 'i-arcticons-xiaohongshu-rednote',
     },
   ],
   navBarLayout: {
@@ -94,8 +96,8 @@ export const UI: Ui = {
     { title: 'AstroStreams', path: '/streams' },
   ],
   postView: {
-    postMetaStyle: 'minimal',
-    useCoverAltAsCaption: true,
+    postMetaStyle: 'icon',
+    useCoverAltAsCaption: false,
   },
   groupView: {
     maxGroupColumns: 3,
@@ -103,24 +105,24 @@ export const UI: Ui = {
   },
   githubView: {
     monorepos: [
-      'withastro/astro',
-      'withastro/starlight',
-      'lin-stephanie/astro-loaders',
+      //'withastro/astro',
+      //'withastro/starlight',
+     // 'lin-stephanie/astro-loaders',
     ],
     mainLogoOverrides: [
-      [/starlight/, 'https://starlight.astro.build/favicon.svg'],
+     // [/starlight/, 'https://starlight.astro.build/favicon.svg'],
     ],
     subLogoMatches: [
-      [/theme/, 'i-unjs-theme-colors'],
-      [/github/, 'https://github.githubassets.com/favicons/favicon.svg'],
-      [/tweet/, 'i-prime-twitter'],
-      [/ins/, 'i-skill-icons-instagram'],
-      [/bluesky/, 'i-logos-bluesky'],
+     // [/theme/, 'i-unjs-theme-colors'],
+      //[/github/, 'https://github.githubassets.com/favicons/favicon.svg'],
+     // [/tweet/, 'i-prime-twitter'],
+     // [/ins/, 'i-skill-icons-instagram'],
+     // [/bluesky/, 'i-logos-bluesky'],
     ],
   },
   externalLink: {
     newTab: false,
-    cursorType: '',
+    cursorType: 'url("/images/new-tab.svg") 10 10, pointer',
     showNewTabIcon: false,
   },
 }
@@ -180,7 +182,7 @@ export const FEATURES: Features = {
       'data-reactions-enabled': '1',
       'data-emit-metadata': '0',
       'data-input-position': 'bottom',
-      'data-lang': 'en',
+      'data-lang': 'zh-cn',
     },
   ],
   search: [
