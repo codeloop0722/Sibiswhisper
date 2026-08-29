@@ -11,6 +11,11 @@ interface Props {
   batchSize?: number
   layout?: 'masonry' | 'square'
   masonryStrategy?: 'sequential' | 'balanced'
+  category?: string
+  limit?: number
+  showToggle?: boolean
+  id?: string
+  wrapperClass?: string
 }
 
 const {
@@ -20,10 +25,17 @@ const {
   batchSize = 15,
   layout = 'masonry',
   masonryStrategy = 'sequential',
+  category,
+  limit,
+  showToggle = true,
+  id = 'default',
+  wrapperClass,
 } = Astro.props as Props
+const containerClass = `photo-container-${id}`
+const loaderClass = `photo-loader-${id}`
 ---
 
-<div class="mx-20 lt-lgp:mx-10 lt-md:mx-1">
+<div class={wrapperClass ?? 'mx-20 lt-lgp:mx-10 lt-md:mx-1'}>
   <photo-view
     data-hash={hash}
     data-gap={gap}
@@ -32,23 +44,31 @@ const {
     data-batch-size={batchSize}
     data-layout={layout}
     data-masonry-strategy={layout === 'masonry' ? masonryStrategy : undefined}
+    data-category={category}
+    data-limit={limit}
+    data-instance-id={id}
     class="photo-view block relative w-full"
   >
-    <div class="photo-container"></div>
-    <button
-      class="photo-layout-toggle z-50 fixed left-5 bottom-6
-        flex items-center justify-center w-10 h-10 rounded-full
-        op-30 op-transition lt-lgp:(op-50! bg-[color-mix(in_srgb,var(--c-border)_20%,transparent)])
-        hover:(op-100! bg-[color-mix(in_srgb,var(--c-border)_20%,transparent)]) print:hidden"
-      title="Layout toggle"
-    >
-      <div u-i-ri-layout-masonry-line class="icon-masonry hidden"></div>
-      <div u-i-ri-layout-grid-2-line class="icon-grid hidden"></div>
-    </button>
+    <div class={`photo-container ${containerClass}`}></div>
+    <div class="photo-empty hidden py-8 text-center op-50"></div>
+    {
+      showToggle && (
+        <button
+          class="photo-layout-toggle z-50 fixed left-5 bottom-6
+            flex items-center justify-center w-10 h-10 rounded-full
+            op-30 op-transition lt-lgp:(op-50! bg-[color-mix(in_srgb,var(--c-border)_20%,transparent)])
+            hover:(op-100! bg-[color-mix(in_srgb,var(--c-border)_20%,transparent)]) print:hidden"
+          title="Layout toggle"
+        >
+          <div u-i-ri-layout-masonry-line class="icon-masonry hidden"></div>
+          <div u-i-ri-layout-grid-2-line class="icon-grid hidden"></div>
+        </button>
+      )
+    }
   </photo-view>
-  <Loader class="photo-loader" />
+  <Loader class={`photo-loader ${loaderClass}`} />
   <ImageViewer
-    selector=".photo-container"
+    selector={`.${containerClass}`}
     options={{ url: 'data-origin' }}
     asyncInsert={true}
     tabFocus={true}
@@ -91,7 +111,9 @@ const {
       if (this.#initialized) return
       this.#initialized = true
       this.#container = this.querySelector('.photo-container')
-      this.#loader = document.querySelector('.photo-loader')
+      this.#loader = document.querySelector(
+        `.photo-loader-${this.dataset.instanceId || 'default'}`
+      )
 
       await this.#fetchData()
       this.#getLayout()
@@ -140,7 +162,25 @@ const {
     #fetchData = async () => {
       const res = await fetch(`/photos/photos.${this.dataset.hash}.json`)
       const [_v, data] = (await res.json()) as [string, PhotoItem[]]
-      this.#allItems = data
+
+      let items = data
+      if (this.dataset.category) {
+        items = items.filter(
+          (item) => item.category === this.dataset.category
+        )
+      }
+      if (this.dataset.limit) {
+        items = items.slice(0, parseInt(this.dataset.limit, 10))
+      }
+
+      this.#allItems = items
+
+      const emptyEl = this.querySelector('.photo-empty')
+      if (items.length === 0 && emptyEl) {
+        emptyEl.textContent = '这个分类还没有照片'
+        emptyEl.classList.remove('hidden')
+        if (this.#loader) this.#loader.style.display = 'none'
+      }
     }
 
     #getLayout = () => {
@@ -172,10 +212,9 @@ const {
     #getMasonryParams = () => {
       this.#containerWidth = this.offsetWidth
 
-      this.#columns = Math.floor(this.#containerWidth / this.#minPhotoWidth)
       this.#columns = Math.max(
         1,
-        Math.min(this.#columns, this.#allItems.length)
+        Math.floor(this.#containerWidth / this.#minPhotoWidth)
       )
 
       const totalGap = this.#gap * (this.#columns - 1)

@@ -1,0 +1,41 @@
+---
+title: 关于我
+subtitle: 认识一下
+description: 关于 Sibiswhisper 的介绍。
+bgType: false
+ogImage: true
+---
+
+import BaseLayout from '~/layouts/BaseLayout.astro'
+import StandardLayout from '~/layouts/StandardLayout.astro'
+
+<BaseLayout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  ogImage={frontmatter.ogImage}
+>
+  <StandardLayout class="prose" title={frontmatter.title} subtitle={frontmatter.subtitle}>
+    <p class="text-center">
+      <img
+        src="/avatar.jpg"
+        alt="头像"
+        class="inline-block w-32 h-32 rounded-full border border-[var(--c-border)]"
+      />
+    </p>
+
+    你好，我是 **Sibiswhisper**。（下面是模板内容，直接编辑这个文件替换成你自己的介绍就行）
+
+    ## 我是谁
+
+    写写你的背景、身份、兴趣爱好……
+
+    ## 我在做什么
+
+    - 2026 年：开启[五座雪山攀登计划](/projects/snow-mountains-2026/)
+    - 用博客记录生活、学习和探索
+
+    ## 联系我
+
+    顶部导航栏有我的 B站 / 抖音 / 小红书。
+  </StandardLayout>
+</BaseLayout>

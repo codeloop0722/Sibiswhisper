@@ -66,14 +66,14 @@ for (const item of enriched) {
   ogImage={false}
 >
   <StandardLayout
-    class="max-w-300 group/content"
+    class="max-w-[65ch]"
     title={project.data.id}
     subtitle={project.data.desc}
     isCentered={true}
   >
     {
       project.body && (
-        <div class="prose mx-auto mb-12">
+        <div class="prose mb-12">
           <Content />
         </div>
       )

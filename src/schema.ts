@@ -202,6 +202,12 @@ export const photoSchema = z.object({
     .describe(
       'Optional description for the image. If not needed, leave the field as an empty string or delete it.'
     ),
+  category: z
+    .string()
+    .default('')
+    .describe(
+      'Optional. The category (display name) of the photo, e.g. `雪山`. Photos are grouped by category on the photos page.'
+    ),
 })
 
 /* Streams */

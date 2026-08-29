@@ -1,7 +1,7 @@
 ---
 title: Photos
-subtitle: Create your personal gallery (photos below from Unsplash)
-description: Create your personal gallery (photos below from Unsplash)
+subtitle: 我的照片
+description: 我的照片：雪山、夕阳、街景……
 bgType: false
 ogImage: true
 ---
@@ -9,6 +9,10 @@ ogImage: true
 import BaseLayout from '~/layouts/BaseLayout.astro'
 import StandardLayout from '~/layouts/StandardLayout.astro'
 import PhotoView from '~/components/views/PhotoView.astro'
+import Categorizer from '~/components/base/Categorizer.astro'
+import Link from '~/components/base/Link.astro'
+
+import { photoCategories } from '~/content/photos/categories'
 
 <BaseLayout
   title={frontmatter.title}
@@ -20,6 +24,29 @@ import PhotoView from '~/components/views/PhotoView.astro'
     subtitle={frontmatter.subtitle}
     isCentered={true}
   >
-    <PhotoView />
+    {
+      Object.entries(photoCategories).map(([name, slug], idx) => (
+        <section class="mt-12">
+          <div class="text-center">
+            <Categorizer text={name} idx={idx} />
+          </div>
+          <PhotoView
+            category={name}
+            limit={7}
+            showToggle={false}
+            id={slug}
+            wrapperClass="mx-auto max-w-[72rem]"
+          />
+          <p class="text-center mt-5">
+            <Link
+              href={`/photos/${slug}/`}
+              class="op-70 hover:op-100 no-underline!"
+            >
+              显示更多 →
+            </Link>
+          </p>
+        </section>
+      ))
+    }
   </StandardLayout>
 </BaseLayout>

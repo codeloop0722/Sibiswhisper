@@ -26,6 +26,12 @@ export const UI: Ui = {
       displayMode: 'alwaysText',
       text: 'Projects',
     },
+    {
+      path: '/about',
+      title: 'About',
+      displayMode: 'alwaysText',
+      text: 'About',
+    },
  /*
     {
       path: '/highlights',

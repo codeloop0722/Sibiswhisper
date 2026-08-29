@@ -23,6 +23,7 @@ export interface PhotoItem {
   uuid: string
   src: string
   desc: string
+  category: string
   thumbnail: string
   placeholder: string
   aspectRatio: number
@@ -42,12 +43,14 @@ const photoConfig = JSON.parse(
 ) as {
   id: string
   desc?: string
+  category?: string
 }[]
 const photoOrder = new Map(photoConfig.map((photo, index) => [photo.id, index]))
 const photos = (await getCollection('photos'))
   .map((p) => ({
     id: p.data.id,
     desc: p.data.desc,
+    category: p.data.category,
   }))
   .sort(
     (a, b) =>
@@ -73,7 +76,7 @@ async function buildPhotoData(logger: Logger): Promise<{
   let skippedCount = 0
 
   for (const photo of photos) {
-    const { id, desc } = photo
+    const { id, desc, category } = photo
 
     // remote image
     if (id.startsWith('http://') || id.startsWith('https://')) {
@@ -96,6 +99,7 @@ async function buildPhotoData(logger: Logger): Promise<{
           uuid,
           src: id,
           desc,
+          category,
           thumbnail,
           placeholder: cache.placeholder,
           aspectRatio: cache.aspectRatio,
@@ -130,6 +134,7 @@ async function buildPhotoData(logger: Logger): Promise<{
           uuid,
           src: id,
           desc,
+          category,
           thumbnail,
           placeholder,
           aspectRatio,
@@ -196,6 +201,7 @@ async function buildPhotoData(logger: Logger): Promise<{
         uuid,
         src: localImage.src,
         desc,
+        category,
         thumbnail,
         placeholder: cache.placeholder,
         aspectRatio: cache.aspectRatio,
@@ -235,6 +241,7 @@ async function buildPhotoData(logger: Logger): Promise<{
         uuid,
         src: localImage.src,
         desc,
+        category,
         thumbnail,
         placeholder,
         aspectRatio,

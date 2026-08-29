@@ -1,7 +1,7 @@
 ---
-title: 'Astro AntfuStyle Theme'
-subtitle: ''
-description: ''
+title: 'Sibiswhisper'
+subtitle: '记录雪山、徒步与生活的每一步'
+description: 'Sibiswhisper 的个人博客：雪山攀登、户外徒步、学习笔记。'
 bgType: false
 ogImage: true
 ---
@@ -15,7 +15,11 @@ import RenderPage from '~/components/views/RenderPage.astro'
   description={frontmatter.description}
   ogImage={frontmatter.ogImage}
 >
-  <StandardLayout title={frontmatter.title} subtitle={frontmatter.subtitle}>
+  <StandardLayout
+    title={frontmatter.title}
+    subtitle={frontmatter.subtitle}
+    isCentered={true}
+  >
     <RenderPage slot="article" collectionType="home" id="index" />
   </StandardLayout>
 </BaseLayout>
