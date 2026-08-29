@@ -21,20 +21,22 @@ import { SITE } from '~/config'
     justify-content: center;
     align-items: center;
     gap: 0.8rem;
-
-    transform: scale(1.05);
+  }
+  /* 直接控制图片的实际大小 */
+  .logo-img {
+    width: 60px;       /* 修改这里的数值来调整大小 */
+    height: auto;      /* 高度自适应，防止图片变形 */
+    border-radius: 50%;
   }
 
   @media (max-width: 767.9px) {
     .logo-container {
       margin-top: 0.125rem;
-
-      transform-origin: 0%;
-      transform: scale(0.95);
     }
   }
 
-  .logo-container svg {
-    height: 2rem;
-  }
+    .logo-img {
+      width: 32px;
+      border-radius: 50%; 
+    }
 </style>
