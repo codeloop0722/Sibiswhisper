@@ -21,7 +21,6 @@
     "postbuild": "pagefind --site dist --exclude-selectors \"pre\" --include-characters \"<>\" && del-cli \"dist/pagefind/*ui*\""
   },
   "devDependencies": {
-    "@ascorbic/feed-loader": "^2.0.1",
     "@astrojs/check": "^0.9.9",
     "@astrojs/markdown-remark": "^7.2.1",
     "@astrojs/mdx": "^7.0.2",

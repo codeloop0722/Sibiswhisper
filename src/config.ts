@@ -92,7 +92,6 @@ export const UI: Ui = {
   },
   tabbedLayoutTabs: [
     { title: 'Changelog', path: '/changelog' },
-    { title: 'AstroBlog', path: '/feeds' },
     { title: 'AstroStreams', path: '/streams' },
   ],
   postView: {

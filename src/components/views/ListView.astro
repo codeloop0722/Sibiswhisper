@@ -21,7 +21,7 @@ interface Props {
 
 const { collectionType, pageToc = false, pageTag = false } = Astro.props
 
-const VALID_COLLECTION_TYPE = ['blog', 'changelog', 'streams', 'feeds']
+const VALID_COLLECTION_TYPE = ['blog', 'changelog', 'streams']
 const WARNING = `The '${collectionType}' collection type is not built-in.
   Modify <code>ListView.astro</code> to render it.`
 
@@ -122,39 +122,6 @@ if (collectionType === 'streams') {
   }
 }
 
-/* Feeds */
-let sortedFeedItems: CollectionEntry<'feeds'>[] = []
-if (collectionType === 'feeds') {
-  const feedItems = await getCollection(collectionType)
-
-  sortedFeedItems = feedItems
-    .filter(
-      (
-        item
-      ): item is typeof item & {
-        data: typeof item.data & {
-          url: string
-          title: string
-          published: Date
-        }
-      } => !!item.data.url && !!item.data.title && !!item.data.published
-    )
-    .sort((a, b) => {
-      return b.data.published.valueOf() - a.data.published.valueOf()
-    })
-
-  if (tocEnabled) {
-    const yearsSet = new Set<number>()
-    sortedFeedItems.forEach((item) => {
-      const year = getYear(item.data.published!)
-      yearsSet.add(year)
-    })
-
-    years = Array.from(yearsSet)
-      .sort((a, b) => b - a)
-      .map((year) => year.toString())
-  }
-}
 ---
 
 <DesktopAside anchors={years} {tags} />
@@ -228,42 +195,6 @@ if (collectionType === 'feeds') {
                 video={data.video}
                 platform={data.platform}
                 redirect={data.link}
-              />
-            </>
-          )
-        })
-      )}
-    </div>
-  )
-}
-
-{
-  collectionType === 'feeds' && (
-    <div aria-label="Feed list">
-      {sortedFeedItems.length === 0 ? (
-        <div class="py-2 op-50">nothing here yet</div>
-      ) : (
-        sortedFeedItems.map((item, idx) => {
-          const { data } = item
-
-          return (
-            <>
-              {!isSameYear(
-                data.published!,
-                sortedFeedItems[idx - 1]?.data.published as Date
-              ) && (
-                <Categorizer
-                  {idx}
-                  needId={tocEnabled}
-                  text={getYear(data.published!).toString()}
-                />
-              )}
-              <ListItem
-                {idx}
-                {collectionType}
-                title={data.title!}
-                date={data.published!}
-                redirect={data.url!}
               />
             </>
           )

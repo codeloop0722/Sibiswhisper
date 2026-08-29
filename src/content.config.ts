@@ -1,7 +1,6 @@
 import { glob, file } from 'astro/loaders'
 import { defineCollection } from 'astro:content'
 
-import { feedLoader } from '@ascorbic/feed-loader'
 import { githubReleasesLoader } from 'astro-loader-github-releases'
 import { githubPrsLoader } from 'astro-loader-github-prs'
 
@@ -81,12 +80,6 @@ const streams = defineCollection({
   schema: streamSchema,
 })
 
-const feeds = defineCollection({
-  loader: feedLoader({
-    url: 'https://astro.build/rss.xml',
-  }),
-})
-
 export const collections = {
   pages,
   home,
@@ -98,5 +91,4 @@ export const collections = {
   shorts,
   changelog,
   streams,
-  feeds,
 }
