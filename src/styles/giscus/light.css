@@ -1,6 +1,6 @@
 main {
-  --primary-default: 8, 155, 91;
-  --bg-default: 246, 246, 247;
+  --primary-default: 92, 82, 71;
+  --bg-default: 255, 246, 232;
   --color-prettylights-syntax-comment: #6e7781;
   --color-prettylights-syntax-constant: #0550ae;
   --color-prettylights-syntax-entity: #8250df;
@@ -60,13 +60,13 @@ main {
     var(--bg-default),
     0.85
   );
-  --color-fg-default: rgb(60 60 67);
-  --color-fg-muted: rgb(60 60 67 / 75%);
-  --color-fg-subtle: rgb(60 60 67 / 33%);
-  --color-canvas-default: rgb(255 255 255);
-  --color-canvas-overlay: rgb(255 255 255);
-  --color-canvas-inset: rgb(255 255 255);
-  --color-canvas-subtle: rgb(255 255 255);
+  --color-fg-default: rgb(92 82 71);
+  --color-fg-muted: rgb(131 120 108 / 75%);
+  --color-fg-subtle: rgb(131 120 108 / 40%);
+  --color-canvas-default: rgb(215 202 189);
+  --color-canvas-overlay: rgb(215 202 189);
+  --color-canvas-inset: rgb(215 202 189);
+  --color-canvas-subtle: rgb(215 202 189);
   --color-border-default: rgba(var(--bg-default), 0.85);
   --color-border-muted: rgb(175 184 193 / 20%);
   --color-neutral-muted: rgb(175 184 193 / 20%);

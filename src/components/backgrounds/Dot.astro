@@ -63,11 +63,11 @@
             const ny = y + p.sin(rad) * length
 
             const isDark = document.documentElement.classList.contains('dark')
-            const color = isDark ? 55 : 200
+            const c = isDark ? [74, 66, 57] : [214, 202, 189]
             p.stroke(
-              color,
-              color,
-              color,
+              c[0],
+              c[1],
+              c[2],
               (Math.abs(p.cos(rad)) * 0.8 + 0.2) * point.opacity * 255
             )
             p.strokeWeight(2)

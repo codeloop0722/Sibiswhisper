@@ -14,7 +14,7 @@ const Container = interactive ? 'button' : 'span'
   type={interactive ? 'button' : undefined}
   role={interactive ? 'option' : undefined}
   class={`py-0.4 px-1.2 rounded whitespace-nowrap
-    bg-[#88888825] dark:bg-[#88888840] op-transition
+    bg-[color-mix(in_srgb,var(--c-border)_25%,transparent)] op-transition
     ${
       interactive
         ? `aria-[selected=true]:op-100 aria-[selected=false]:op-60 disabled:op-20

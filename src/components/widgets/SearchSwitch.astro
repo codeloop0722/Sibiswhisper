@@ -57,7 +57,7 @@ const maxItems = parseTuple(maxItemsPerPage, 'maxItemsPerPage')
               type="button"
               role="tab"
               class="px-1.5 py-0.5 rounded
-                bg-[#88888816] dark:bg-[#88888823]
+                bg-[color-mix(in_srgb,var(--c-border)_15%,transparent)]
                 aria-[selected=false]:op-40 aria-[selected=true]:op-100
                 aria-[selected=false]:hover:op-70 op-transition cursor-pointer"
               data-type={item.toLowerCase()}
@@ -72,7 +72,7 @@ const maxItems = parseTuple(maxItemsPerPage, 'maxItemsPerPage')
     <div
       class="grid grid-cols-[auto_1fr] items-center
         h-10 px-3 rounded-md
-        bg-[#88888811] dark:bg-[#88888818]"
+        bg-[color-mix(in_srgb,var(--c-border)_12%,transparent)]"
     >
       <div u-i-grommet-icons-search></div>
       <label for="search-input" id="search-label" class="sr-only"></label>
@@ -131,7 +131,7 @@ const maxItems = parseTuple(maxItemsPerPage, 'maxItemsPerPage')
   <footer role="note" aria-label="Keyboard shortcuts">
     <ul
       class="flex flex-wrap items-center gap-4.5 lt-md:hidden
-        pt-3 border-t border-[#7d7d7d4d]
+        pt-3 border-t border-[color-mix(in_srgb,var(--c-border)_30%,transparent)]
         text-xs op-40 select-none"
     >
       <li class="flex items-center gap-1">

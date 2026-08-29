@@ -130,7 +130,10 @@
       const R180 = Math.PI
       const R90 = Math.PI / 2
       const R15 = Math.PI / 12
-      const COLOR = '#88888825'
+      const isDark = document.documentElement.classList.contains('dark')
+      const COLOR = isDark
+        ? 'rgba(74, 66, 57, 0.3)'
+        : 'rgba(172, 160, 147, 0.15)'
       const THRESHOLD = 30
       const LEN = 6
       const INTERVAL = 1000 / 40

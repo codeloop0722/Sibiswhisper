@@ -4,23 +4,24 @@
 
 /* Prose Complement */
 .prose {
-  --fg-light: #888;
-  --fg: #555;
-  --fg-deep: #222;
-  --fg-deeper: var(--c-text);
+  --fg-light: color-mix(in srgb, var(--c-text) 70%, var(--c-bg));
+  --fg: var(--c-text);
+  --fg-deep: var(--c-heading);
+  --fg-deeper: var(--c-heading);
 
   color: var(--fg);
 }
 
 html.dark .prose {
-  --fg-light: #888;
-  --fg: #bbb;
-  --fg-deep: #ddd;
-  --fg-deeper: var(--c-text);
+  --fg-light: color-mix(in srgb, var(--c-text) 70%, var(--c-bg));
+  --fg: var(--c-text);
+  --fg-deep: var(--c-heading);
+  --fg-deeper: var(--c-heading);
 }
 
 .prose a {
-  border-bottom: 1px solid rgba(125, 125, 125, 0.3);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--c-border) 35%, transparent);
   transition: border 0.3s ease-in-out;
 }
 
@@ -98,11 +99,11 @@ html.dark .prose {
 .prose code:not(.expressive-code code) {
   border-radius: 0.25rem;
   padding: 0.15rem 0.3rem;
-  background-color: #88888820;
+  background-color: color-mix(in srgb, var(--c-border) 15%, transparent);
 }
 
 html.dark .prose code:not(.expressive-code code) {
-  background-color: #88888830;
+  background-color: color-mix(in srgb, var(--c-border) 22%, transparent);
 }
 
 .prose div:has(> table) {
@@ -291,7 +292,7 @@ html:not(.dark) .img-dark {
   font-size: 0.875rem;
   line-height: 1.25rem;
 
-  background: #8882;
+  background: color-mix(in srgb, var(--c-border) 15%, transparent);
   transform: translateY(6px);
   transition: all 300ms ease-in-out !important;
 }
@@ -319,7 +320,7 @@ html:not(.dark) .img-dark {
   color: var(--fg-light) !important;
   line-height: 100%;
 
-  background: #8882;
+  background: color-mix(in srgb, var(--c-border) 15%, transparent);
   transform: translateY(3px);
   transition: all 300ms ease-in-out !important;
 }
@@ -341,7 +342,7 @@ html:not(.dark) .img-dark {
 [data-link='custom-url'].square:hover {
   color: var(--fg) !important;
 
-  background: #8883;
+  background: color-mix(in srgb, var(--c-border) 22%, transparent);
 }
 
 [data-link='github-repo'].github,

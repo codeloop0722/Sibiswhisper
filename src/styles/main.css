@@ -1,16 +1,22 @@
 :root {
   --c-bg: #fff6e8;           /* 页面主背景（米白纸色） */
-  --c-scrollbar: #aca093;    /* 滚动条颜色（暖灰褐） */
-  --c-scrollbar-hover: #83786c; /* 滚动条悬停颜色（中深褐灰） */
-  --c-text: #83786c;         /* 正文/副标题颜色（中深褐灰） */
+  --c-surface: #d7cabd;      /* 卡片/侧边栏/评论区底色（浅卡其灰） */
+  --c-border: #aca093;       /* 分割线/边框/次要图标（暖灰褐） */
+  --c-text: #83786c;         /* 副标题/正文（中深褐灰） */
+  --c-heading: #5c5247;      /* 主标题/Logo/强调文字（深炭褐） */
+  --c-scrollbar: var(--c-border);
+  --c-scrollbar-hover: var(--c-text);
 }
 
 /* 暗色模式：基于深炭褐的柔和护眼模式 */
 :root.dark {
   --c-bg: #1a1714;           /* 暗色背景（极暗深炭褐） */
-  --c-scrollbar: #4a4239;    /* 暗色滚动条 */
-  --c-scrollbar-hover: #5c5247; /* 暗色滚动条悬停 */
+  --c-surface: #262019;      /* 暗色卡片/侧边栏底色 */
+  --c-border: #4a4239;       /* 暗色分割线/边框 */
   --c-text: #b8ad9f;         /* 暗色正文（降低对比度，柔和护眼） */
+  --c-heading: #d7cabd;      /* 暗色主标题/强调文字 */
+  --c-scrollbar: var(--c-border);
+  --c-scrollbar-hover: #5c5247;
 }
 
 html {
@@ -28,8 +34,17 @@ body {
   overflow-y: scroll;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--c-heading);
+}
+
 ::selection {
-  background: rgba(164, 149, 132, 0.3);
+  background: color-mix(in srgb, var(--c-border) 35%, transparent);
 }
 
 :focus-visible:not(input) {
@@ -37,7 +52,7 @@ body {
   outline-offset: 2px;
   box-shadow:
     0 0 0 2px var(--c-bg),
-    0 0 0 5px rgba(164, 149, 132, 0.3),
+    0 0 0 5px color-mix(in srgb, var(--c-border) 35%, transparent),
     var(--un-shadow, 0 0 #0000);
 }
 
@@ -235,7 +250,7 @@ body {
 
 .search-result-h1 {
   padding: 0 0.625rem 0.375rem;
-  border-bottom: 1px solid #7d7d7d4d;
+  border-bottom: 1px solid color-mix(in srgb, var(--c-border) 30%, transparent);
   margin: 0.75rem 0 0.375rem;
 
   opacity: 0.4;
@@ -268,11 +283,11 @@ body {
 }
 
 .search-result-item[aria-selected='true'] {
-  background-color: #88888811;
+  background-color: color-mix(in srgb, var(--c-border) 12%, transparent);
 }
 
 html.dark .search-result-item[aria-selected='true'] {
-  background-color: #88888818;
+  background-color: color-mix(in srgb, var(--c-border) 18%, transparent);
 }
 
 .search-result-excerpt {
@@ -286,12 +301,12 @@ html.dark .search-result-item[aria-selected='true'] {
 .search-result-excerpt mark,
 mark.pagefind-highlight {
   color: var(--c-text);
-  background-color: #88888830;
+  background-color: color-mix(in srgb, var(--c-border) 25%, transparent);
 }
 
 html.dark .search-result-excerpt mark,
 html.dark mark.pagefind-highlight {
-  background-color: #8888884d;
+  background-color: color-mix(in srgb, var(--c-border) 35%, transparent);
 }
 
 .search-kbd-key {
@@ -304,17 +319,17 @@ html.dark mark.pagefind-highlight {
   padding: 0 0.375rem;
   border-radius: 0.375rem;
   border-width: 1px;
-  border-color: #0000002e;
+  border-color: color-mix(in srgb, var(--c-border) 40%, transparent);
 
   font-size: 0.625rem;
   line-height: 1;
   text-transform: uppercase;
-  background-color: #ffffffd9;
+  background-color: var(--c-surface);
 }
 
 html.dark .search-kbd-key {
-  border-color: #ffffff38;
-  background-color: #ffffff0f;
+  border-color: color-mix(in srgb, var(--c-heading) 25%, transparent);
+  background-color: color-mix(in srgb, var(--c-surface) 60%, transparent);
 }
 
 /* Toc */

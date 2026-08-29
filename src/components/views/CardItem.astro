@@ -117,13 +117,13 @@ if (images && images.length > 0) {
 <section class={className} data-tags={tags}>
   <div
     class={`overflow-hidden flex flex-col
-      h-full b b-[#8884] rounded-lg bg-white dark:bg-black
+      h-full b b-[color-mix(in_srgb,var(--c-border)_25%,transparent)] rounded-lg bg-[var(--c-surface)]
       shadow-transition-500`}
   >
     {
       ((images && images.length > 0) || video) && (
         <MediaContainer
-          class="b-b b-b-[#8884] op-100!"
+          class="b-b b-b-[color-mix(in_srgb,var(--c-border)_25%,transparent)] op-100!"
           href={link || undefined}
         >
           {images &&
@@ -165,13 +165,13 @@ if (images && images.length > 0) {
       external && (
         <Link
           class={`overflow-hidden flex flex-col
-            b b-[#8884] rounded-lg mt-3 mx-3
+            b b-[color-mix(in_srgb,var(--c-border)_25%,transparent)] rounded-lg mt-3 mx-3
             op-100! shadow-transition-500 hover:(shadow-custom_0_5_15_-3)`}
           href={external.uri}
         >
           {!COMPACT && external.img && (
             <Image
-              class="b-b b-b-[#8884] aspect-[1.91/1] object-cover"
+              class="b-b b-b-[color-mix(in_srgb,var(--c-border)_25%,transparent)] aspect-[1.91/1] object-cover"
               src={external.img}
               alt={external.title}
               inferSize
@@ -179,7 +179,7 @@ if (images && images.length > 0) {
             />
           )}
           <div class="flex flex-col px-3 pt-2 pb-1">
-            <div class="flex flex-col gap-1 pb-1.5 b-b b-b-[#8884]">
+            <div class="flex flex-col gap-1 pb-1.5 b-b b-b-[color-mix(in_srgb,var(--c-border)_25%,transparent)]">
               <p class="text-sm font-600">{external.title}</p>
               <p class="text-xs">{external.description}</p>
             </div>
@@ -195,7 +195,7 @@ if (images && images.length > 0) {
       quote && (
         <div
           class={`overflow-hidden flex flex-col gap-2
-            b b-[#8884] rounded-lg p-2 mt-3 mx-3
+            b b-[color-mix(in_srgb,var(--c-border)_25%,transparent)] rounded-lg p-2 mt-3 mx-3
             text-sm shadow-transition-500 hover:(shadow-custom_0_5_15_-3)`}
         >
           <div class="flex items-center gap-1">
@@ -247,7 +247,7 @@ if (images && images.length > 0) {
             {date && <p class="text-sm op-60">{formatDate(date)}</p>}
             <div
               role="none"
-              class="w-[calc(100%+2rem)] h-[1px] my-3.5 ml--4 bg-[#8884]"
+              class="w-[calc(100%+2rem)] h-[1px] my-3.5 ml--4 bg-[color-mix(in_srgb,var(--c-border)_25%,transparent)]"
             />
             <div
               class="flex justify-start items-center gap-y-3 gap-x-2.5 mt-0.5 mb-1
@@ -266,13 +266,13 @@ if (images && images.length > 0) {
             class="card-item-details"
             style="max-height: 0; overflow-y: clip;"
           >
-            <ol class="relative border-s border-gray-200 dark:border-gray-700">
+            <ol class="relative border-s border-[color-mix(in_srgb,var(--c-border)_40%,transparent)]">
               {details.slice(0, MAX_DETAILS + 1).map((detail, idx) => (
                 <li class="ms-4 mb-6 last:mb-0">
                   <div
                     class="absolute start--1.6 w-3 h-3
-                      border rounded-full border-white dark:border-gray-900 mt-1.5
-                      bg-gray-200 dark:bg-gray-700"
+                      border rounded-full border-[var(--c-bg)] mt-1.5
+                      bg-[var(--c-border)]"
                   />
                   {idx < MAX_DETAILS && (
                     <div

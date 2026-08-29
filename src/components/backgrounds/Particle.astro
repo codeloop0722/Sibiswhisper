@@ -25,7 +25,10 @@
 
     connectedCallback() {
       const sketch = (p: P5Instance) => {
-        const COLOR = '#88888825'
+        const isDark = document.documentElement.classList.contains('dark')
+        const COLOR = isDark
+          ? 'rgba(74, 66, 57, 0.3)'
+          : 'rgba(172, 160, 147, 0.15)'
         const VELOCITY = 0.8
         const DENSITY = 6000
         const DISTANCE = 120

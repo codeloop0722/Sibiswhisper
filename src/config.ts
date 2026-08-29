@@ -16,16 +16,16 @@ export const UI: Ui = {
   internalNavs: [
     {
       path: '/blog',
-      title: 'Blog',
+      title: '新发布博客',
       displayMode: 'alwaysText',
       text: 'Blog',
     },
-    {
+    /*{
       path: '/projects',
       title: 'Projects',
       displayMode: 'alwaysText',
       text: 'Projects',
-    },
+    },*/
  /*
     {
       path: '/highlights',

@@ -4,7 +4,7 @@
   line-height: 1.75;
 }
 .prose [class~='lead'] {
-  color: #4b5563;
+  color: var(--c-heading);
   font-size: 1.25em;
   line-height: 1.6;
   margin-top: 1.2em;
@@ -54,7 +54,7 @@
   content: counter(list-item, var(--list-counter-style, decimal)) '.';
   position: absolute;
   font-weight: 400;
-  color: #6b7280;
+  color: var(--c-text);
   left: 0;
 }
 .prose ul > li {
@@ -64,7 +64,7 @@
 .prose ul > li::before {
   content: '';
   position: absolute;
-  background-color: #d1d5db;
+  background-color: var(--c-border);
   border-radius: 50%;
   width: 0.375em;
   height: 0.375em;
@@ -72,7 +72,7 @@
   left: 0.25em;
 }
 .prose hr {
-  border-color: rgba(125, 125, 125, 0.3);
+  border-color: color-mix(in srgb, var(--c-border) 35%, transparent);
   margin-top: 3em;
   margin-bottom: 3em;
 }
@@ -81,7 +81,7 @@
   font-style: italic;
   color: inherit;
   border-left-width: 0.25rem;
-  border-color: rgba(125, 125, 125, 0.3);
+  border-color: color-mix(in srgb, var(--c-border) 35%, transparent);
   quotes: '\201C' '\201D' '\2018' '\2019';
   margin-top: 1.6em;
   margin-bottom: 1.6em;
@@ -110,7 +110,7 @@
   line-height: 1.3333333;
 }
 .prose h3 {
-  color: inherit;
+  color: var(--c-heading);
   font-weight: 600;
   font-size: 1.4em;
   margin-top: 1.6em;
@@ -118,7 +118,7 @@
   line-height: 1.6;
 }
 .prose h4 {
-  color: inherit;
+  color: var(--c-heading);
   font-weight: 600;
   font-size: 1.2em;
   margin-top: 1.5em;
@@ -126,7 +126,7 @@
   line-height: 1.5;
 }
 .prose h5 {
-  color: inherit;
+  color: var(--c-heading);
   font-weight: 600;
   font-size: 1.1em;
   margin-top: 1.5em;
@@ -134,7 +134,7 @@
   line-height: 1.4;
 }
 .prose h6 {
-  color: inherit;
+  color: var(--c-heading);
   font-weight: 600;
   font-size: 1em;
   margin-top: 1.5em;
@@ -142,7 +142,7 @@
   line-height: 1.3;
 }
 .prose figure figcaption {
-  color: #6b7280;
+  color: var(--c-text);
   font-size: 0.875em;
   line-height: 1.4285714;
   margin-top: 0.8571429em;
@@ -152,7 +152,7 @@
   font-size: 0.875em;
 }
 .prose a code {
-  color: #111827;
+  color: var(--c-heading);
 }
 .prose pre {
   overflow-x: auto;
@@ -194,7 +194,7 @@
   color: var(--fg-deep);
   font-weight: 600;
   border-bottom-width: 1px;
-  border-bottom-color: #8882;
+  border-bottom-color: color-mix(in srgb, var(--c-border) 15%, transparent);
 }
 .prose thead th {
   vertical-align: bottom;
@@ -204,7 +204,7 @@
 }
 .prose tbody tr {
   border-bottom-width: 1px;
-  border-bottom-color: #8882;
+  border-bottom-color: color-mix(in srgb, var(--c-border) 15%, transparent);
 }
 .prose tbody tr:last-child {
   border-bottom-width: 0;

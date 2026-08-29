@@ -57,7 +57,7 @@ const content =
   >
     <div class="flex-none relative">
       <img
-        class={`size-11 lt-sm:size-10 border mt-0.2 border-gray-100 dark:border-gray-800
+        class={`size-11 lt-sm:size-10 border mt-0.2 border-[var(--c-border)]
             ${isOrg ? 'rounded-lg' : 'rounded-full transform-scale-108'}`}
         src={mainLogoSrc}
         alt={mainLogoAlt}
@@ -66,8 +66,8 @@ const content =
         subLogoSrc && (
           <div
             class={`absolute bottom--2 right--1.6 flex justify-center items-center
-              size-6 p-0.72 border border-gray:5 rounded-full
-              bg-white  dark:bg-[#121212]`}
+              size-6 p-0.72 border border-[color-mix(in_srgb,var(--c-border)_50%,transparent)] rounded-full
+              bg-[var(--c-surface)]`}
           >
             {subLogoSrc.includes('://') ? (
               <img src={subLogoSrc} alt="Sub logo" />

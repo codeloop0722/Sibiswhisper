@@ -52,12 +52,12 @@ if (hasCustomCursor) style['--external-link-cursor'] = cursorType
 
   <body
     class="relative flex flex-col min-h-screen
-      font-sans text-gray-700 dark:text-gray-200"
+      font-sans text-[var(--c-text)]"
     style={Object.keys(style).length !== 0 ? style : undefined}
     data-no-sliding={enableSlideEnterAnim ? undefined : ''}
   >
     <!-- Background -->
-    {bgType && <Background type={false} />}
+    {bgType && <Background type={bgType} />}
 
     <!-- Skip Link -->
     <Link
