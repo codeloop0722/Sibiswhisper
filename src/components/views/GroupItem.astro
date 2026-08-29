@@ -31,7 +31,7 @@ const { maxGroupColumns, showGroupItemColorOnHover } = UI.groupView
           text-4.4 transition-all duration-300`}
         href={item.link}
         aria-hidden={true}
-        external={true}
+        external={!item.link.startsWith('/')}
       >
         <div class="pt-2 pr-5">
           <div

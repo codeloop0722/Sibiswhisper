@@ -1,0 +1,104 @@
+---
+import { getCollection, render } from 'astro:content'
+
+import BaseLayout from '~/layouts/BaseLayout.astro'
+import StandardLayout from '~/layouts/StandardLayout.astro'
+import Categorizer from '~/components/base/Categorizer.astro'
+import ListItem from '~/components/views/ListItem.astro'
+
+import { getFilteredPosts, getSortedPosts, getMinutesRead } from '~/utils/data'
+import { getYear } from '~/utils/datetime'
+
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+  project: CollectionEntry<'projects'>
+}
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects')
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }))
+}
+
+const { project } = Astro.props
+const { Content } = await render(project)
+
+/* Posts belonging to this project */
+const projectPosts = await getFilteredPosts('blog')
+const relatedPosts = getSortedPosts(
+  projectPosts.filter((post) => post.data.project === project.id)
+)
+
+const enriched = await Promise.all(
+  relatedPosts.map(async (post, idx) => {
+    const { remarkPluginFrontmatter } = await render(post)
+    return {
+      idx,
+      id: post.id,
+      data: post.data,
+      minutesRead: getMinutesRead(
+        post.data.minutesRead,
+        remarkPluginFrontmatter.minutesRead
+      ),
+    }
+  })
+)
+
+/* Group by year */
+const grouped: {
+  year: string
+  items: typeof enriched
+}[] = []
+for (const item of enriched) {
+  const year = getYear(item.data.pubDate).toString()
+  const last = grouped[grouped.length - 1]
+  if (!last || last.year !== year) grouped.push({ year, items: [item] })
+  else last.items.push(item)
+}
+---
+
+<BaseLayout
+  title={project.data.id}
+  description={project.data.desc}
+  ogImage={false}
+>
+  <StandardLayout
+    class="max-w-300 group/content"
+    title={project.data.id}
+    subtitle={project.data.desc}
+    isCentered={true}
+  >
+    {
+      project.body && (
+        <div class="prose mx-auto mb-12">
+          <Content />
+        </div>
+      )
+    }
+    {
+      grouped.length === 0 ? (
+        <div class="py-8 text-center op-50">这个项目还没有文章，敬请期待。</div>
+      ) : (
+        grouped.map((group) => (
+          <section data-year={group.year}>
+            <Categorizer text={group.year} />
+            {group.items.map(({ idx, id, data, minutesRead }) => (
+              <ListItem
+                {idx}
+                collectionType="blog"
+                postSlug={id}
+                title={data.title}
+                tags={data.tags}
+                date={data.pubDate}
+                {minutesRead}
+              />
+            ))}
+          </section>
+        ))
+      )
+    }
+  </StandardLayout>
+</BaseLayout>

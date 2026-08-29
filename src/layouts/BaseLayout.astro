@@ -4,7 +4,6 @@ import '~/styles/prose.css'
 import '~/styles/markdown.css'
 
 import Head from '~/components/base/Head.astro'
-import Background from '~/components/backgrounds/Background.astro'
 import Link from '~/components/base/Link.astro'
 import NavBar from '~/components/nav/NavBar.astro'
 import BackLink from '~/components/widgets/BackLink.astro'
@@ -15,19 +14,15 @@ import Backdrop from '~/components/base/Backdrop.astro'
 import { SITE, UI, FEATURES } from '~/config'
 import { withBasePath } from '~/utils/path'
 
-import type { BgType } from '~/types'
-
 interface Props {
   title?: string
   description?: string
   ogImage?: string | boolean
-  bgType?: BgType | false
   pubDate?: string
   lastModDate?: string
 }
 
-const { title, description, ogImage, bgType, pubDate, lastModDate } =
-  Astro.props
+const { title, description, ogImage, pubDate, lastModDate } = Astro.props
 
 let style: Record<string, string> = {}
 
@@ -56,9 +51,6 @@ if (hasCustomCursor) style['--external-link-cursor'] = cursorType
     style={Object.keys(style).length !== 0 ? style : undefined}
     data-no-sliding={enableSlideEnterAnim ? undefined : ''}
   >
-    <!-- Background -->
-    {bgType && <Background type={bgType} />}
-
     <!-- Skip Link -->
     <Link
       href="#main"

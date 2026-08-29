@@ -1,16 +1,13 @@
 ---
 import { slug } from '~/utils/toc'
-import { UI } from '~/config'
 
 interface Props {
   idx?: number
   text: string
   needId?: boolean
-  wide?: boolean
 }
 
-const { idx, text, needId = false, wide = false } = Astro.props
-const { maxGroupColumns } = UI.groupView
+const { idx, text, needId = false } = Astro.props
 ---
 
 <div
@@ -20,22 +17,7 @@ const { maxGroupColumns } = UI.groupView
     ${idx !== undefined ? 'slide-enter' : ''}`}
   style={idx !== undefined ? { '--enter-stage': idx - 2 } : undefined}
 >
-  {
-    !wide ? (
-      <span
-        class="inline-block mt-4 mb-3 text-xl font-800 op-60"
-      >
-        {text}
-      </span>
-    ) : (
-      <span
-        class={`absolute top-0 op-35 dark:op-20
-          text-5em lt-lg:text-4.5em lt-sm:(text-3.6em top-2) text-stroke-1.5 text-stroke-[#aca093]
-          font-800 color-transparent leading-1em
-          ${maxGroupColumns === 3 ? 'left--4' : 'left-[14%] lt-lg:left--4'}`}
-      >
-        {text}
-      </span>
-    )
-  }
+  <span class="inline-block mt-4 mb-3 text-xl font-800 op-60">
+    {text}
+  </span>
 </div>

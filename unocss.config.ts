@@ -1,3 +1,6 @@
+import { readdirSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
+
 import {
   defineConfig,
   presetWind3,
@@ -7,7 +10,6 @@ import {
 } from 'unocss'
 
 import { UI } from './src/config'
-import projecstData from './src/content/projects/data.json'
 
 import type { PresetWind3Theme } from 'unocss'
 import type {
@@ -34,7 +36,13 @@ const socialIcons = socialLinks
   )
   .map((item) => (item as IconSocialItem | ResponsiveSocialItem).icon)
 
-const projectIcons = projecstData.map((item) => item.icon)
+/* Icons declared in the `icon:` frontmatter of each project file */
+const projectsDir = join(process.cwd(), 'src/content/projects')
+const projectIcons = readdirSync(projectsDir)
+  .filter((file) => file.endsWith('.md'))
+  .map((file) => readFileSync(join(projectsDir, file), 'utf8'))
+  .map((content) => content.match(/^icon:\s*(\S+)/m)?.[1])
+  .filter((icon): icon is string => Boolean(icon))
 
 const githubVersionColor: Record<string, string> = {
   major: 'bg-rose/15 text-rose-700 dark:text-rose-300',

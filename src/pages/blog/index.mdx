@@ -1,7 +1,7 @@
 ---
 title: 这里是我的小纸条
 subtitle: 这里是我的博客
-bgType: rose
+bgType: false
 ogImage: true
 ---
 
@@ -12,7 +12,6 @@ import ListView from '~/components/views/ListView.astro'
 <BaseLayout
   title={frontmatter.title}
   description={frontmatter.description}
-  bgType={frontmatter.bgType}
   ogImage={frontmatter.ogImage}
 >
   <StandardLayout

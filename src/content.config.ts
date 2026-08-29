@@ -28,7 +28,7 @@ const blog = defineCollection({
 })
 
 const projects = defineCollection({
-  loader: file('./src/content/projects/data.json'),
+  loader: glob({ base: './src/content/projects', pattern: '**/[^_]*.md' }),
   schema: projectSchema,
 })
 

@@ -2,7 +2,7 @@
 title: AstroEco is Contributing...
 subtitle: ''
 description: Display your GitHub pull requests using astro-loader-github-prs
-bgType: plum
+bgType: false
 ogImage: true
 ---
 
@@ -14,7 +14,6 @@ import Link from '~/components/base/Link.astro'
 <BaseLayout
   title={frontmatter.title}
   description={frontmatter.description}
-  bgType={frontmatter.bgType}
   ogImage={frontmatter.ogImage}
 >
   <StandardLayout class="max-w-65ch" isCentered={true}>

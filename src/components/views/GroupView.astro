@@ -6,8 +6,8 @@ import DesktopAside from '~/components/base/DesktopAside.astro'
 import MobileControl from '~/components/base/MobileControl.astro'
 import Categorizer from '~/components/base/Categorizer.astro'
 import GroupItem from '~/components/views/GroupItem.astro'
-import projectsData from '~/content/projects/data.json'
 import { FEATURES } from '~/config'
+import { withBasePath } from '~/utils/path'
 
 import type { CollectionKey } from 'astro:content'
 import type { GroupItemData } from '~/components/views/GroupItem.astro'
@@ -31,16 +31,16 @@ if (collectionType === 'projects') {
   isEmpty = projects.length === 0
   if (isEmpty) return
 
-  const projectOrder = new Map(
-    projectsData.map(({ id }, index) => [id, index] as const)
-  )
   data = [...projects]
     .sort(
       (a, b) =>
-        (projectOrder.get(a.data.id) ?? projects.length) -
-        (projectOrder.get(b.data.id) ?? projects.length)
+        a.data.category.localeCompare(b.data.category) ||
+        a.data.id.localeCompare(b.data.id)
     )
-    .map((p) => p.data)
+    .map((p) => ({
+      ...p.data,
+      link: withBasePath(`/projects/${p.id}/`),
+    }))
     .reduce((acc: Record<string, GroupItemData[]>, { category, ...rest }) => {
       ;(acc[category] ??= []).push(rest)
       return acc
@@ -72,7 +72,7 @@ const tocEnabled = Array.isArray(toc) && toc[0] && pageToc
       )}
       {Object.keys(data).map((key, idx) => (
         <div class="slide-enter" style={{ '--enter-stage': idx }}>
-          <Categorizer text={key} needId={tocEnabled} wide={true} />
+          <Categorizer text={key} needId={tocEnabled} />
           <GroupItem items={data[key]} />
         </div>
       ))}

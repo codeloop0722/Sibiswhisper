@@ -63,6 +63,13 @@ export const postSchema = ({ image }: SchemaContext) =>
       .describe(
         'Provides a brief description, used in meta tags for SEO and sharing purposes. If not needed, leave the field as an empty string or delete it, and the `SITE.description` will be used directly.'
       ),
+    project: z
+      .string()
+      .trim()
+      .default('')
+      .describe(
+        'Optional. The id (file name) of the project this post belongs to, e.g. `snow-mountains-2026` (see `src/content/projects/`). Posts with this field will appear on the corresponding project page at `/projects/<id>/`. Leave empty to not associate the post with any project.'
+      ),
     tags: z
       .array(z.string())
       .default([])
@@ -167,9 +174,6 @@ export const postSchema = ({ image }: SchemaContext) =>
 /* Projects */
 export const projectSchema = z.object({
   id: z.string().describe('**Required**. Name of the project to be displayed.'),
-  link: z
-    .url()
-    .describe('**Required**. URL linking to the project page or repository.'),
   desc: z
     .string()
     .describe('**Required**. A brief description summarizing the project.'),

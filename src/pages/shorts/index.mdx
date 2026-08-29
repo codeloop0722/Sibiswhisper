@@ -2,7 +2,7 @@
 title: Shorts
 subtitle: Share your short notes or quick thoughts
 description: Share your short notes or quick thoughts
-bgType: particle
+bgType: false
 ogImage: true
 ---
 
@@ -13,7 +13,6 @@ import CardView from '~/components/views/CardView.astro'
 <BaseLayout
   title={frontmatter.title}
   description={frontmatter.description}
-  bgType={frontmatter.bgType}
   ogImage={frontmatter.ogImage}
 >
   <StandardLayout

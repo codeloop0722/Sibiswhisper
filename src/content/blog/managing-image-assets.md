@@ -8,6 +8,7 @@ toc: true
 share: true
 giscus: true
 search: true
+project: snow-mountains-2026
 ---
 
 This post provides a brief guide on how to organize and use images in the [Astro AntfuStyle Theme](https://github.com/lin-stephanie/astro-antfustyle-theme).

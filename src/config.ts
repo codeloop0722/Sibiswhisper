@@ -20,12 +20,12 @@ export const UI: Ui = {
       displayMode: 'alwaysText',
       text: 'Blog',
     },
-    /*{
+    {
       path: '/projects',
       title: 'Projects',
       displayMode: 'alwaysText',
       text: 'Projects',
-    },*/
+    },
  /*
     {
       path: '/highlights',
@@ -92,7 +92,7 @@ export const UI: Ui = {
   },
   tabbedLayoutTabs: [
     { title: 'Changelog', path: '/changelog' },
-    { title: 'AstroStreams', path: '/streams' },
+    { title: 'Streams', path: '/streams' },
   ],
   postView: {
     postMetaStyle: 'icon',
